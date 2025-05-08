@@ -43,8 +43,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               Text(
-                '미국 주식 커뮤니티의
-밈 트렌드를 한눈에!',
+                '미국 주식 커뮤니티의\n밈 트렌드를 한눈에!',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Pretendard',
@@ -55,8 +54,7 @@ class OnboardingScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16),
               Text(
-                '레딧, 트위터 등에서 화제가 되는
-밈 주식 소식을 쉽고 빠르게 받아보세요.',
+                '레딧, 트위터 등에서 화제가 되는\n밈 주식 소식을 쉽고 빠르게 받아보세요.',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontFamily: 'Pretendard',
