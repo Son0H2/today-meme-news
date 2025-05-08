@@ -1,58 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:today_meme_news/core/navigation/app_router.dart';
-import 'package:today_meme_news/core/theme/app_theme.dart';
-import 'package:today_meme_news/features/splash/splash_screen.dart';
-import 'package:today_meme_news/features/onboarding/onboarding_screen.dart';
-import 'package:today_meme_news/features/home/home_screen.dart';
-import 'package:today_meme_news/features/settings/settings_screen.dart';
+import 'package:go_router/go_router.dart';
+import 'features/onboarding/onboarding_screen.dart';
+import 'features/onboarding/permission_request_screen.dart';
+import 'features/home/home_screen.dart';
+import 'features/detail/detail_screen.dart';
+import 'features/settings/settings_screen.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
+
+final _router = GoRouter(
+  initialLocation: '/onboarding',
+  routes: [
+    GoRoute(
+      path: '/onboarding',
+      builder: (context, state) => const OnboardingScreen(),
+    ),
+    GoRoute(
+      path: '/permission',
+      builder: (context, state) => const PermissionRequestScreen(),
+    ),
+    GoRoute(
+      path: '/home',
+      builder: (context, state) => const HomeScreen(),
+      routes: [
+        GoRoute(
+          path: 'detail',
+          builder: (context, state) => const DetailScreen(),
+        ),
+      ],
+    ),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
+    ),
+  ],
+);
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Today Meme News',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: ThemeMode.system,
-      initialRoute: AppRouter.splash,
-      onGenerateRoute: AppRouter.generateRoute,
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Home Screen'),
+    return MaterialApp.router(
+      title: 'today-meme-news',
+      routerConfig: _router,
+      theme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0B1B2B),
       ),
-    );
-  }
-}
-
-class SettingsScreen extends StatelessWidget {
-  const SettingsScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('Settings Screen'),
+      darkTheme: ThemeData.dark().copyWith(
+        scaffoldBackgroundColor: const Color(0xFF0B1B2B),
       ),
+      themeMode: ThemeMode.dark,
     );
   }
 }
