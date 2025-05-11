@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 📰 today-meme-news
 
 > "미국 밈 주식 커뮤니티의 열기를, 아침마다 한눈에"
@@ -243,3 +244,55 @@ flowchart LR
 - 푸시 권한 거부 시에도 앱 사용은 가능하게 UX 설계
 
 ---
+=======
+# Today Meme News Backend
+
+Reddit의 r/wallstreetbets, r/stocks, r/investing 등에서 수집한 데이터를 처리하고 분석하는 ETL 파이프라인입니다.
+
+## 주요 기능
+
+- Reddit API를 통한 데이터 수집
+- 티커 심볼 추출 및 집계
+- Finnhub API를 통한 가격 데이터 연동
+- Gemini Pro를 통한 요약 및 감정 분석
+- Firebase Firestore에 데이터 저장
+
+## 설정 방법
+
+1. Python 3.9 이상 설치
+2. 가상환경 생성 및 활성화:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # Linux/Mac
+   # 또는
+   .\venv\Scripts\activate  # Windows
+   ```
+3. 의존성 설치:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. `.env.example` 파일을 `.env`로 복사하고 필요한 API 키들을 설정
+
+## 환경 변수
+
+- `REDDIT_CLIENT_ID`: Reddit API 클라이언트 ID
+- `REDDIT_CLIENT_SECRET`: Reddit API 클라이언트 시크릿
+- `REDDIT_USER_AGENT`: Reddit API 사용자 에이전트
+- `FINNHUB_API_KEY`: Finnhub API 키
+- `GOOGLE_APPLICATION_CREDENTIALS`: Firebase 서비스 계정 키 파일 경로
+- `GEMINI_API_KEY`: Google Gemini API 키
+- `FIREBASE_PROJECT_ID`: Firebase 프로젝트 ID
+- `FIREBASE_DATABASE_URL`: Firebase 데이터베이스 URL
+
+## 실행 방법
+
+```bash
+python src/pipeline.py
+```
+
+## 테스트
+
+```bash
+pytest tests/
+``` 
+>>>>>>> 5969fdb (feat(backend): 파이썬 ETL 파이프라인 기본 구조 및 주요 모듈 구현)
