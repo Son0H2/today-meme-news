@@ -47,33 +47,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   itemBuilder: (context, idx) {
                     final data = _pages[idx];
                     return Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
                         Text(
                           data.emoji,
                           style: const TextStyle(fontSize: 64),
-                        ),
-                        const SizedBox(height: 32),
-                        Text(
+              ),
+              const SizedBox(height: 32),
+              Text(
                           data.title,
-                          textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
                           style: const TextStyle(
-                            fontFamily: 'Pretendard',
+                  fontFamily: 'Pretendard',
                             fontWeight: FontWeight.w800,
-                            fontSize: 28,
+                  fontSize: 28,
                             color: Colors.white,
-                          ),
-                        ),
+                ),
+              ),
                         if (data.description.isNotEmpty) ...[
                           const SizedBox(height: 24),
-                          Text(
+              Text(
                             data.description,
-                            textAlign: TextAlign.center,
+                textAlign: TextAlign.center,
                             style: const TextStyle(
-                              fontFamily: 'Pretendard',
+                  fontFamily: 'Pretendard',
                               fontWeight: FontWeight.w400,
-                              fontSize: 16,
+                  fontSize: 16,
                               color: Color(0xFF9CA3AF),
                             ),
                           ),
@@ -92,32 +92,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _page == idx ? const Color(0xFF00C4FF) : const Color(0xFF374151),
-                  ),
+                ),
                 )),
               ),
               SizedBox(
                 width: double.infinity,
                 height: 56,
                 child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+                style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF00C4FF),
                     foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
+                  shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(18),
-                    ),
-                    elevation: 0,
                   ),
-                  onPressed: () {
+                    elevation: 0,
+                ),
+                onPressed: () {
                     if (_page < _pages.length - 1) {
                       _controller.nextPage(duration: const Duration(milliseconds: 300), curve: Curves.ease);
                     } else {
                       context.go('/permission');
                     }
-                  },
+                },
                   child: Text(
                     _page == _pages.length - 1 ? '시작하기' : '다음',
                     style: const TextStyle(
-                      fontFamily: 'Pretendard',
+                    fontFamily: 'Pretendard',
                       fontWeight: FontWeight.w800,
                       fontSize: 20,
                     ),

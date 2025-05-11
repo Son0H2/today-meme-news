@@ -27,7 +27,19 @@ final _router = GoRouter(
       routes: [
         GoRoute(
           path: 'detail',
-          builder: (context, state) => const DetailScreen(),
+          builder: (context, state) {
+            final data = state.extra as Map<String, dynamic>;
+            final List<String> summaryList = (data['summaryList'] as List).map((e) => e.toString()).toList();
+            return DetailScreen(
+              ticker: data['ticker'],
+              logoUrl: data['logoUrl'],
+              sentiment: data['sentiment'],
+              sentimentEmoji: data['sentimentEmoji'],
+              price: data['price'],
+              change: data['change'],
+              summaryList: summaryList,
+  );
+          },
         ),
       ],
     ),

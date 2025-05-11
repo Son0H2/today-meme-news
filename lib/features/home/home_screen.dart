@@ -3,6 +3,17 @@ import '../../widgets/stock_card.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'dart:math';
+import 'package:go_router/go_router.dart';
+
+// 스크롤 속도 제한용 커스텀 Physics
+class SlowScrollPhysics extends ClampingScrollPhysics {
+  const SlowScrollPhysics({ScrollPhysics? parent}) : super(parent: parent);
+
+  @override
+  double applyPhysicsToUserOffset(ScrollMetrics position, double offset) {
+    return super.applyPhysicsToUserOffset(position, offset * 0.6);
+  }
+}
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -198,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Expanded(
               child: ListView.builder(
                 controller: _scrollController,
-                physics: const BouncingScrollPhysics(),
+                physics: const SlowScrollPhysics(),
                 itemCount: loadedDates.length + (isLoading ? 1 : 0),
                 itemBuilder: (context, idx) {
                   if (idx >= loadedDates.length) {
@@ -245,6 +256,21 @@ class _HomeScreenState extends State<HomeScreen> {
                           summary: stock['summary'],
                           price: stock['price'],
                           change: stock['change'],
+                          onTap: () {
+                            context.push('/home/detail', extra: {
+                              'ticker': stock['ticker'],
+                              'logoUrl': stock['logoUrl'],
+                              'sentiment': stock['sentiment'],
+                              'sentimentEmoji': stock['sentimentEmoji'],
+                              'price': stock['price'],
+                              'change': stock['change'],
+                              'summaryList': [
+                                stock['summary'],
+                                'To the moon!',
+                                'Diamond hands only!',
+                              ],
+                            });
+                          },
                         )).toList(),
                       ),
                       if (idx < loadedDates.length - 1)
